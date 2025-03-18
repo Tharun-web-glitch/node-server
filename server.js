@@ -9,8 +9,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/data", (req, res) => {
-    console.log("Received Data:", req.body);
-    res.status(200).send({ message: "Data received successfully!" });
+    const receivedData = req.body.value;
+    console.log("Data received from ESP8266:", receivedData);
+    res.json({ status: "success", receivedValue: receivedData });
 });
 
 app.listen(PORT, () => {
